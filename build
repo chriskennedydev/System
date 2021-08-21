@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e 
+
+build_type=$1
+
+function usage() 
+{
+    printf "usage: ./build release || ./build debug || ./build clean\n"
+}
+
+if [ -z $build_type ]; then
+    usage
+    exit 1
+fi
+
+if [ $build_type = "debug" ]; then
+    gcc -o app \
+        src/*.c \
+        -Wall -lSDL2
+elif [ $build_type = "release" ]; then
+    gcc -o game \
+        src/*.c \
+        -Wall -lSDL2 -O2
+elif [ $build_type = "clean" ]; then
+    rm -rf app && rm -rf game
+else 
+    usage
+    exit 1
+fi
