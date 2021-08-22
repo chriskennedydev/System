@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 int character_creation();
-int better_character_creation();
+int quit_menu();
 
 int main(void)
 {
@@ -37,8 +37,8 @@ int main(void)
                 break;
             }
             if((e.type == SDL_KEYDOWN) && (e.key.keysym.sym == SDLK_ESCAPE)) {
-                int better = better_character_creation();
-                if(better == 2) 
+                int quit_game = quit_menu();
+                if(quit_game == 2) 
                     break;
             }
         }
@@ -124,7 +124,7 @@ int character_creation()
     return button_id;
 }
 
-int better_character_creation()
+int quit_menu()
 {
     const SDL_MessageBoxButtonData buttons[] = {
         { 0, 0, "No" },
